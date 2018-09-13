@@ -23,22 +23,22 @@ class SBS():
     score = self._calc_score(X_train, y_train, X_test, y_test, self.indices_)
     self.scores_ = [score]
   
-   while dim > self.k_features:
-      scores = []
-      subsets = []
-      
-      for p in combinations(self.indices_, r=dim-1):
-        score = self._calc_score(X_train, y_train, X_test, y_test, p)
-        scores.append(score)
-        subsets.append(p)
+     while dim > self.k_features:
+        scores = []
+        subsets = []
 
-      best = np.argmax(scores)
-      self.indices_ = subsets[best]
-      self.subsets_.append(self.indices_)
-      dim -= 1
-      self.scores_.append(scores[best])
-    self.k_score_ = self.scores_[-1]
-    return self
+        for p in combinations(self.indices_, r=dim-1):
+          score = self._calc_score(X_train, y_train, X_test, y_test, p)
+          scores.append(score)
+          subsets.append(p)
+
+        best = np.argmax(scores)
+        self.indices_ = subsets[best]
+        self.subsets_.append(self.indices_)
+        dim -= 1
+        self.scores_.append(scores[best])
+      self.k_score_ = self.scores_[-1]
+      return self
   
   def transform(self, X):
     return X[:, self.indices_]
