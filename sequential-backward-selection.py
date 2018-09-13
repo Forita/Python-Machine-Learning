@@ -24,7 +24,7 @@ class SBS():
       score = self._calc_score(X_train, y_train, X_test, y_test, self.indices_)
       self.scores_ = [score]
 
-       while dim > self.k_features:
+      while dim > self.k_features:
             scores = []
             subsets = []
 
