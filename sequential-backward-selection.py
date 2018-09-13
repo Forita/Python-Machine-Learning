@@ -37,8 +37,8 @@ class SBS():
         self.subsets_.append(self.indices_)
         dim -= 1
         self.scores_.append(scores[best])
-      self.k_score_ = self.scores_[-1]
-      return self
+    self.k_score_ = self.scores_[-1]
+    return self
   
   def transform(self, X):
     return X[:, self.indices_]
